@@ -1,23 +1,52 @@
 /* Portfolio de Terence TRAN — BTS SIO SLAM */
+/* Thème bois : marron, orange et blanc */
 :root {
-  --bg: #0f1117;
-  --bg-alt: #161a23;
-  --card: #1c2130;
-  --border: #2a3142;
-  --text: #e6e8ee;
-  --muted: #9aa3b5;
-  --accent: #4f8cff;
-  --accent-2: #22c39a;
-  --todo-bg: #3a3214;
+  --bg: #2b1a10;          /* marron foncé */
+  --bg-alt: #3a2416;      /* marron bois */
+  --card: #4a2e1b;        /* bois */
+  --border: #6e4527;      /* bordure bois clair */
+  --text: #ffffff;        /* blanc */
+  --muted: #e8d5c4;       /* blanc cassé */
+  --accent: #f07c2a;      /* orange */
+  --accent-2: #8bc34a;    /* vert feuille (touche nature) */
+  --leaf-dark: #4e7d2c;   /* vert mousse, lisible sur fond blanc */
+  --todo-bg: #4a3a12;
   --todo-text: #ffd866;
   --radius: 14px;
   --max: 1100px;
+
+  /* Mur en tasseaux : lattes de bois verticales séparées par des rainures sombres */
+  --slats:
+    linear-gradient(180deg, rgba(255, 220, 170, .05), rgba(0, 0, 0, .12)),
+    repeating-linear-gradient(90deg,
+      #17110d 0 6px,
+      #7e4820 6px 7px,
+      #b8723a 7px 10px,
+      #cd8a4e 10px 16px,
+      #b46e37 16px 21px,
+      #8c5226 21px 23px,
+      #17110d 23px 24px);
+  /* Voile sombre posé sur les lattes pour garder le texte lisible */
+  --slats-veil: linear-gradient(rgba(24, 14, 8, .62), rgba(24, 14, 8, .62));
+
+  /* Veinage du bois, dessiné en CSS */
+  --grain:
+    repeating-linear-gradient(92deg, rgba(255, 220, 170, .035) 0 2px, transparent 2px 9px),
+    repeating-linear-gradient(88deg, rgba(0, 0, 0, .10) 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(90deg, rgba(255, 200, 140, .025) 0 14px, transparent 14px 41px);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+/* Mur en tasseaux sur un calque fixe derrière la page
+   (plus fiable que background-attachment: fixed, qui peut afficher des carrés noirs) */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: var(--slats-veil), var(--slats), #24170f;
+  transform: translateZ(0);
+}
 body {
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.6;
@@ -39,9 +68,10 @@ img { max-width: 100%; display: block; }
 /* ---------- Barre de navigation ---------- */
 .nav {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(15, 17, 23, 0.9);
+  background: rgba(23, 15, 10, 0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--accent);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
 }
 .nav-inner {
   max-width: var(--max); margin: 0 auto; padding: 14px 20px;
@@ -56,7 +86,46 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Sections ---------- */
 section { padding: 80px 20px; }
-section:nth-of-type(even) { background: var(--bg-alt); }
+/* Sections paires : fond blanc, texte marron (alternance bois / blanc) */
+section:nth-of-type(even) {
+  --text: #2b1a10;
+  --muted: #7a5236;
+  --border: #ecd8c6;
+  --card: #fff8f2;
+  --bg: #ffffff;
+  background: #ffffff;
+  color: var(--text);
+}
+section:nth-of-type(even) .section-title { color: #3a2416; text-shadow: none; }
+section:nth-of-type(even) .card,
+section:nth-of-type(even) .project {
+  background: #fff8f2;
+  box-shadow: 0 4px 14px rgba(58, 36, 22, .10);
+}
+section:nth-of-type(even) .chip,
+section:nth-of-type(even) .tag,
+section:nth-of-type(even) input,
+section:nth-of-type(even) textarea,
+section:nth-of-type(even) .contact-list .ico { background: #ffffff; }
+section:nth-of-type(even) .btn { color: var(--text); }
+section:nth-of-type(even) .btn-primary { color: #ffffff; }
+section:nth-of-type(even) .project-thumb { color: #e8d5c4; }
+section:nth-of-type(even) .tl-item::before { border-color: #ffffff; }
+section:nth-of-type(even) { --accent-2: var(--leaf-dark); }
+section:nth-of-type(even) .skills h3 { color: var(--leaf-dark); }
+section:nth-of-type(even) .card { border-top: 3px solid #8bc34a; }
+
+/* Touches de vert : puces du parcours, liseré des sections, soulignement des titres */
+.tl-item::before { background: var(--accent-2); }
+.timeline::before { background: linear-gradient(var(--accent-2), var(--border)); }
+.section-title::after { background: linear-gradient(90deg, var(--accent) 0 60%, #8bc34a 60% 100%); }
+.nav-logo span { color: var(--accent); }
+footer { border-top: 3px solid #8bc34a; }
+
+.section-title { font-family: "Merriweather", Georgia, serif; color: #ffffff; text-shadow: 0 2px 8px rgba(0, 0, 0, .6); }
+.hero-text, .section-sub, .tl-item { text-shadow: 0 1px 6px rgba(0, 0, 0, .55); }
+section:nth-of-type(even) .section-sub, section:nth-of-type(even) .tl-item { text-shadow: none; }
+.section-title::after { content: ""; display: block; width: 56px; height: 3px; background: var(--accent); border-radius: 2px; margin-top: 8px; }
 .container { max-width: var(--max); margin: 0 auto; }
 .section-title { font-size: 1.9rem; margin-bottom: 8px; }
 .section-sub { color: var(--muted); margin-bottom: 36px; }
@@ -77,15 +146,17 @@ section:nth-of-type(even) { background: var(--bg-alt); }
   display: inline-block; padding: 11px 22px; border-radius: 999px; font-weight: 600;
   border: 1px solid var(--accent); color: var(--text);
 }
-.btn:hover { text-decoration: none; background: rgba(79, 140, 255, .12); }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: #3b78ec; }
+.btn:hover { text-decoration: none; background: rgba(240, 124, 42, .18); }
+.btn-primary { background: linear-gradient(180deg, #ff9142, #e0661a); color: #ffffff; border-color: #e0661a; }
+.btn-primary:hover { background: linear-gradient(180deg, #ffa25c, #ec7326); }
 
 /* ---------- Profil ---------- */
 .profile { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
 .card {
-  background: var(--card); border: 1px solid var(--border);
+  background: var(--grain), linear-gradient(180deg, #573722, var(--card));
+  border: 1px solid var(--border);
   border-radius: var(--radius); padding: 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 220, 170, .08), 0 6px 18px rgba(0, 0, 0, .35);
 }
 .stage-box { border-color: var(--accent-2); }
 .stage-box h3 { color: var(--accent-2); margin-bottom: 8px; }
@@ -116,7 +187,7 @@ section:nth-of-type(even) { background: var(--bg-alt); }
 .more summary::-webkit-details-marker { display: none; }
 .more summary::after { content: " ▾"; }
 .more[open] summary::after { content: " ▴"; }
-.more summary:hover { background: rgba(79, 140, 255, .12); }
+.more summary:hover { background: rgba(240, 124, 42, .18); }
 .more-content {
   margin-top: 12px; padding: 14px 16px;
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
@@ -140,16 +211,18 @@ section:nth-of-type(even) { background: var(--bg-alt); }
   background: var(--card); color: var(--muted); border: 1px solid var(--border);
   border-radius: 999px; padding: 7px 16px; cursor: pointer; font: inherit; font-size: .9rem;
 }
-.filter.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.filter.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 24px; }
 .project {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--grain), linear-gradient(180deg, #573722, var(--card));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  border: 1px solid var(--border); border-radius: var(--radius);
   overflow: hidden; display: flex; flex-direction: column; transition: transform .15s, border-color .15s;
   color: var(--text);
 }
 .project:hover { transform: translateY(-4px); border-color: var(--accent); text-decoration: none; }
 .project-thumb {
-  aspect-ratio: 16 / 9; background: linear-gradient(135deg, #24304a, #1a2233);
+  aspect-ratio: 16 / 9; background: var(--grain), linear-gradient(135deg, #5a3e26, #2e1f14);
   display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: .9rem;
 }
 .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
@@ -208,4 +281,52 @@ footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 30
   .btns { justify-content: center; }
   .hero-title { font-size: 1.9rem; }
   section { padding: 60px 16px; }
+}
+
+/* ---------- Décorations végétales ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero::before, .hero::after {
+  content: ""; position: absolute; width: 230px; height: 230px;
+  background: url("assets/branche.svg") no-repeat center / contain;
+  pointer-events: none; opacity: .9;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .35));
+}
+.hero::before { top: -10px; left: -10px; }
+.hero::after { bottom: -14px; right: -10px; transform: rotate(180deg); }
+.hero .container { position: relative; z-index: 1; }
+
+/* Petite feuille devant chaque titre de section */
+.section-title::before {
+  content: ""; display: inline-block; width: 26px; height: 26px;
+  margin-right: 10px; vertical-align: -3px;
+  background: url("assets/feuille.svg") no-repeat center / contain;
+}
+
+/* Plante en pot dans la section Contact */
+#contact { position: relative; overflow: hidden; }
+#contact::after {
+  content: ""; position: absolute; right: 2%; bottom: 0;
+  width: 150px; height: 206px;
+  background: url("assets/plante.svg") no-repeat bottom center / contain;
+  pointer-events: none; opacity: .95;
+}
+#contact .container { position: relative; z-index: 1; }
+
+/* Frise de pousses au-dessus du pied de page */
+footer { position: relative; }
+footer::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -31px; height: 28px;
+  background: url("assets/pousses.svg") repeat-x bottom / 90px 28px;
+  pointer-events: none;
+}
+
+/* Liane le long de la ligne de temps du parcours */
+.timeline::after {
+  content: ""; position: absolute; left: -2px; top: -18px; width: 22px; height: 22px;
+  background: url("assets/feuille.svg") no-repeat center / contain; transform: rotate(-30deg);
+}
+
+@media (max-width: 800px) {
+  .hero::before, .hero::after { width: 130px; height: 130px; opacity: .7; }
+  #contact::after { width: 90px; height: 124px; opacity: .5; }
 }

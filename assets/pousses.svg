@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" preserveAspectRatio="xMidYMax meet">
+  <!-- Frise de pousses répétée au-dessus du pied de page -->
+  <g stroke="#4e7d2c" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M14 40 C 14 30, 12 24, 10 18"/>
+    <path d="M44 40 C 44 28, 46 20, 48 12"/>
+    <path d="M78 40 C 78 32, 76 27, 74 22"/>
+    <path d="M104 40 C 104 30, 106 24, 108 17"/>
+  </g>
+  <g fill="#8bc34a">
+    <path d="M10 18 C 2 16, 0 8, 4 4 C 10 8, 12 12, 10 18 Z"/>
+    <path d="M12 24 C 20 22, 24 16, 22 12 C 16 14, 12 18, 12 24 Z"/>
+    <path d="M48 12 C 42 8, 42 2, 46 0 C 50 4, 50 8, 48 12 Z"/>
+    <path d="M46 22 C 38 20, 34 14, 36 10 C 42 12, 46 16, 46 22 Z"/>
+    <path d="M47 26 C 54 24, 58 18, 56 14 C 50 16, 47 20, 47 26 Z"/>
+    <path d="M74 22 C 68 20, 66 14, 69 11 C 74 14, 75 18, 74 22 Z"/>
+    <path d="M77 28 C 84 26, 88 21, 86 17 C 80 19, 77 23, 77 28 Z"/>
+    <path d="M108 17 C 102 14, 101 8, 104 5 C 109 9, 110 13, 108 17 Z"/>
+    <path d="M105 26 C 112 25, 116 19, 114 15 C 108 17, 105 21, 105 26 Z"/>
+  </g>
+</svg>

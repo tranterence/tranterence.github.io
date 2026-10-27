@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 220">
+  <!-- Plante en pot (section Contact) -->
+  <defs>
+    <linearGradient id="pot" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c25a1c"/>
+      <stop offset=".5" stop-color="#f07c2a"/>
+      <stop offset="1" stop-color="#b14f16"/>
+    </linearGradient>
+    <linearGradient id="fa" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#33691e"/>
+      <stop offset="1" stop-color="#9ccc65"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#fa)">
+    <path d="M80 150 C 70 110, 40 90, 18 70 C 40 70, 70 90, 80 150 Z"/>
+    <path d="M80 150 C 92 105, 120 80, 146 62 C 128 90, 100 110, 80 150 Z"/>
+    <path d="M80 150 C 66 100, 62 50, 76 8 C 94 50, 92 100, 80 150 Z"/>
+    <path d="M80 150 C 56 120, 26 120, 6 118 C 30 108, 60 112, 80 150 Z"/>
+    <path d="M80 150 C 104 122, 132 116, 156 112 C 132 128, 104 130, 80 150 Z"/>
+  </g>
+  <g stroke="#2e5016" stroke-width="1.3" fill="none" opacity=".5">
+    <path d="M80 148 C 70 115, 45 92, 24 74"/>
+    <path d="M80 148 C 92 112, 116 86, 140 66"/>
+    <path d="M80 148 C 70 100, 68 55, 76 14"/>
+  </g>
+  <path d="M40 150 H 120 L 110 214 H 50 Z" fill="url(#pot)"/>
+  <rect x="34" y="146" width="92" height="14" rx="4" fill="#d9661f"/>
+</svg>
